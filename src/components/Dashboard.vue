@@ -1,5 +1,6 @@
 <template>
   <div id="burger-table" v-if="burgers">
+    <Message :msg="msg" v-show="msg" />
     <div>
       <div id="burger-table-heading">
         <div class="order-id">#:</div>
@@ -13,7 +14,7 @@
     <div id="burger-table-rows">
       <div class="burger-table-row" v-for="burger in burgers" :key="burger.id">
         <div class="order-number">{{ burger.id }}</div>
-        <div>{{ burger.name }}</div>
+        <div>{{ burger.nome }}</div>
         <div>{{ burger.pao }}</div>
         <div>{{ burger.carne }}</div>
         <div>
@@ -27,6 +28,7 @@
             class="status"
             @change="updateBurger($event, burger.id)"
           >
+            <!-- passa o evento @change para que quando houver uma mudança essa atualização seja feita  -->
             <option
               :value="s.tipo"
               v-for="s in status"
@@ -36,6 +38,7 @@
               {{ s.tipo }}
             </option>
           </select>
+          <!-- cria o evento de click para que o botão delete possa acessar todos os burgers que estão em loop (v-for) -->
           <button class="delete-btn" @click="deleteBurger(burger.id)">
             Cancelar
           </button>
@@ -49,6 +52,8 @@
 </template>
 
 <script>
+import Message from "./Message.vue";
+
 export default {
   name: "Dashboard",
   data() {
@@ -56,9 +61,14 @@ export default {
       burgers: null,
       burger_id: null,
       status: [],
+      msg: null,
     };
   },
+  components: {
+    Message,
+  },
   methods: {
+    // parte de gerência dos pedidos, onde é feita e troca do valor de "null" do data() para o que veio do servidor
     async getPedidos() {
       const req = await fetch("http://localhost:3000/burgers");
       const data = await req.json();
@@ -77,21 +87,41 @@ export default {
       });
 
       const res = await req.json();
+
+      // colocar mensagem no sistema
+      this.msg = `Pedido removido com sucesso!`;
+
+      // limpar mensagem (após o tempo determinado)
+      setTimeout(() => (this.msg = ""), 3000);
+
       this.getPedidos();
     },
+    // atualizando status do pedido
     async updateBurger(event, id) {
+      // faz com que saibamos qual o status que o usuário admin está colocando no "banco"
       const option = event.target.value;
+      // faz com o que os dados possam ir para o json server em forma de string.
+      // status: option = atualiza o status do pedido
       const dataJson = JSON.stringify({ status: option });
 
       const req = await fetch(`http://localhost:3000/burgers${id}`, {
+        // usa-se o método PATCH para alterar apenas o que foi enviado, as demais informações permanecem as mesmas
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: dataJson,
       });
       const res = await req.json();
+
+      // colocar mensagem no sistema
+      this.msg = `Pedido Nº ${res.id} foi atualizado para ${res.status}!`;
+
+      // limpar mensagem (após o tempo determinado)
+      setTimeout(() => (this.msg = ""), 3000);
+
       console.log(res);
     },
   },
+  // quando o componente for montado
   mounted() {
     this.getPedidos();
   },
