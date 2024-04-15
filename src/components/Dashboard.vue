@@ -18,7 +18,7 @@
         <div>{{ burger.pao }}</div>
         <div>{{ burger.carne }}</div>
         <div>
-          <ul v-for="(opcinal, index) in burger.opcionais" :key="index">
+          <ul v-for="(opcional, index) in burger.opcionais" :key="index">
             <li>{{ opcional }}</li>
           </ul>
         </div>
