@@ -79,13 +79,14 @@
   ],
   "burgers": [
     {
-      "id": "bd12",
-      "nome": null,
-      "carne": "Alcatra",
-      "pao": "Italiano Branco",
+      "id": "dc29",
+      "nome": "Teste02",
+      "carne": "Maminha",
+      "pao": "3 Queijos",
       "opcionais": [
-        "Tomate",
-        "Salame"
+        "Bacon",
+        "Cebola roxa",
+        "Tomate"
       ],
       "status": "Solicitado"
     }

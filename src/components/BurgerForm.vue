@@ -3,14 +3,14 @@
   <div>
     <Message :msg="msg" v-show="msg" />
     <div>
-      <form id="burger-form" @submit="createBurger">
+      <form id="burger-form" method="POST" @submit="createBurger">
         <div class="input-container">
           <label for="name">Nome do cliente:</label>
           <input
             type="text"
-            id="name"
-            name="name"
-            v-model="name"
+            id="nome"
+            name="nome"
+            v-model="nome"
             placeholder="Digite o seu nome"
           />
         </div>
@@ -24,7 +24,7 @@
           </select>
         </div>
         <div class="input-container">
-          <label for="carne">Escolha a carne do seu burger:</label>
+          <label for="carne">Escolha a carne do seu Burger:</label>
           <select name="carne" id="carne" v-model="carne">
             <option value="">Selecione o tipo de carne</option>
             <!-- antes da alteração para puxar os dados dinamicamente <option value="maminha">Maminha</option> -->
@@ -33,7 +33,7 @@
             </option>
           </select>
         </div>
-        <div class="opcionais-container">
+        <div id="opcionais-container" class="input-container">
           <label id="opcionais-title" for="opcionais"
             >Selecione os opcionais:</label
           >
@@ -103,6 +103,7 @@ export default {
       };
       //console.log(data);
       const dataJson = JSON.stringify(data);
+
       // após a requisição devem ser passados outros argumentos para que o programa não entenda que se trata de uma 'GET'
       const req = await fetch("http://localhost:3000/burgers", {
         method: "POST",
@@ -114,7 +115,7 @@ export default {
       // console.log(res);
 
       // colocar mensagem no sistema
-      this.msg = `Pedido Nº ${res.id}realizado com sucesso!`;
+      this.msg = `Pedido Nº ${res.id} realizado com sucesso!`;
 
       // limpar mensagem (após o tempo determinado)
       setTimeout(() => (this.msg = ""), 3000);
@@ -123,7 +124,7 @@ export default {
       this.nome = "";
       this.carne = "";
       this.pao = "";
-      this.opcionais = "";
+      this.opcionais = [];
     },
   },
   // criando a chamada do método (quando o componente for montado, acontecerá...)

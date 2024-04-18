@@ -1,13 +1,15 @@
 <template>
-  <nav id="nav">
-    <!-- utiliza-se o "to" para indicar qual rota o link irá representar -->
-    <router-link to="/" id="logo-url">
-      <!-- passa as propriedades para que apareça dinamicamente usando v-bind ":" -->
-      <img :src="logo" :alt="alt" id="logo" />
-    </router-link>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/pedidos">Pedidos</router-link>
-  </nav>
+  <div>
+    <nav id="nav">
+      <!-- utiliza-se o "to" para indicar qual rota o link irá representar -->
+      <router-link to="/" id="logo-url">
+        <!-- passa as propriedades para que apareça dinamicamente usando v-bind ":" -->
+        <img :src="logo" :alt="alt" id="logo" />
+      </router-link>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/pedidos">Pedidos</router-link>
+    </nav>
+  </div>
 </template>
 <script>
 //o name deve ter o mesmo nome do componente

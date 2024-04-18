@@ -1,8 +1,10 @@
 <template>
-  <Banner />
-  <div class="main-container">
-    <h1>Monte o seu burger:</h1>
-    <BurgerForm />
+  <div>
+    <Banner />
+    <div class="main-container">
+      <h1>Monte o seu burger:</h1>
+      <BurgerForm />
+    </div>
   </div>
 </template>
 

@@ -73,7 +73,7 @@ export default {
       const req = await fetch("http://localhost:3000/burgers");
       const data = await req.json();
       this.burgers = data;
-      // resgata os status dos pedidos
+      // resgata o status dos pedidos
       this.getStatus();
     },
     async getStatus() {
@@ -100,6 +100,7 @@ export default {
     async updateBurger(event, id) {
       // faz com que saibamos qual o status que o usuário admin está colocando no "banco"
       const option = event.target.value;
+
       // faz com o que os dados possam ir para o json server em forma de string.
       // status: option = atualiza o status do pedido
       const dataJson = JSON.stringify({ status: option });
