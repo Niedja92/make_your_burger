@@ -1,19 +1,8 @@
-# make_your_burger
+# 🍔 Make Your Burger
 
-## Project setup
-```
-npm install
-```
+### 💻👩🏽‍💻Este projeto foi feito a partir do curso de Vue.js do instrutor #Matheus Battisti e consiste em um sistema de restaurante onde é possível montar o pedido do seu hambúrguer, ou seja, pão, carne e opcionais, além de mostrar o status do seu pedido. 
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- Neste projeto, pude ter o meu primeiro contato com este framework que achei simplesmente maravilhoso!
+- Além disso, aprendi como funcionam as rotas, como formamos os componentes e puxamos os dados, estilização de forma global e por escopo, #diretivas e como funcionam alguns #Hooks. 
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
